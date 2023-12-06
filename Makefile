@@ -22,19 +22,23 @@ VPATH += src
 
 # List C source files here
 #SRC = src/main.c bin/libMain.a
+# TODO: compile hashlink for arm. libhl.a might not work
 SRC = out/main.c src/main_haxe.c /home/czom/private/hashlink-1.13/libhl.a
 # /home/czom/private/hashlink-1.13/src/hl.h
 
 # List all user directories here
 #UINCDIR = bin
-UINCDIR = out /home/czom/private/hashlink-1.13/src
+UINCDIR = out /home/czom/private/hashlink-1.13/src /usr/include/unicode /usr/include
+#  /usr/arm-linux-gnueabi/include
+# /usr/include/x86_64-linux-gnu
+# NOTE: I'm not sure if it's right to add those above: /usr/include/unicode /usr/include
 # /home/czom/private/hashlink-1.13/src
 
 # List user asm files
 UASRC = 
 
 # List all user C define here, like -D_DEBUG=1
-UDEFS = 
+UDEFS = -Dchar16_t=uint16_t -D_Float128=double
 
 # Define ASM defines here
 UADEFS = 
@@ -48,4 +52,6 @@ ULIBS =
 #libMain.a
 
 include $(SDK)/C_API/buildsupport/common.mk
+
+PDCFLAGS = --skip-unknown
 
