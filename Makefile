@@ -23,16 +23,17 @@ VPATH += src
 # List C source files here
 #SRC = src/main.c bin/libMain.a
 # TODO: compile hashlink for arm. libhl.a might not work
-SRC = out/main.c src/main_haxe.c /home/czom/private/hashlink-1.13/libhl.a
-# /home/czom/private/hashlink-1.13/src/hl.h
+SRC = out/main.c src/main_haxe.c /home/czom/private/hashlink-1.14/libhl.a
+# /home/czom/private/hashlink-1.14/src/hl.h
 
 # List all user directories here
 #UINCDIR = bin
-UINCDIR = out /home/czom/private/hashlink-1.13/src /usr/include/unicode /usr/include
+UINCDIR = out /home/czom/private/hashlink-1.14/src /usr/include/unicode /usr/include
+
 #  /usr/arm-linux-gnueabi/include
 # /usr/include/x86_64-linux-gnu
 # NOTE: I'm not sure if it's right to add those above: /usr/include/unicode /usr/include
-# /home/czom/private/hashlink-1.13/src
+# /home/czom/private/hashlink-1.14/src
 
 # List user asm files
 UASRC = 

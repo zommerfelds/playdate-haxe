@@ -14,8 +14,8 @@ Follow the prerequisites at https://sdk.play.date/2.1.1/Inside%20Playdate%20with
 For Debian I had to install: `arm-none-eabi-newlib` (not sure about `libc6-dev-armel-cross`).
 
 ```
-export PLAYDATE_SDK_PATH=~/private/PlaydateSDK-2.1.1
-haxelib install hashlink 
+export PLAYDATE_SDK_PATH=~/private/PlaydateSDK-2.6.2
+haxelib install hashlink
 
 haxe --main Main2 -p src --hl out/main.c
 make pdc
@@ -24,13 +24,13 @@ $PLAYDATE_SDK_PATH/bin/PlaydateSimulator HelloWorld.pdx
 
 # Next steps
 
-* Compile hashlink for arm and put instructions here
-* Build for actual device
+- Compile hashlink for arm and put instructions here
+- Build for actual device
   This QEMU post could be interesting: https://devforum.play.date/t/how-to-emulate-playdate-arm-with-qemu/11538
-* Make Haxe call PlayDate API:
+- Make Haxe call PlayDate API:
   https://github.com/HaxeFoundation/hashlink/wiki/HashLink-native-extension-tutorial
   https://github.com/Aurel300/ammer
-* Clean up the repo
+- Clean up the repo
 
 # Old notes
 
