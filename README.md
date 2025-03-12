@@ -34,10 +34,42 @@ make pdc
 $PLAYDATE_SDK_PATH/bin/PlaydateSimulator HelloWorld.pdx
 ```
 
+# Codespaces notes
+```
+# TODO: change the notes here to download files outside of the git root
+
+sudo add-apt-repository ppa:haxe/releases -y
+sudo apt-get update
+sudo apt-get install -y haxe
+mkdir ~/haxelib && haxelib setup ~/haxelib
+haxelib install hashlink
+
+sudo apt-get install -y libpng-dev libturbojpeg-dev libvorbis-dev libopenal-dev libsdl2-dev libglu1-mesa-dev libmbedtls-dev libuv1-dev libsqlite3-dev
+HASHLINK_VERSION=1.14
+wget https://github.com/HaxeFoundation/hashlink/archive/refs/tags/$HASHLINK_VERSION.tar.gz -O hashlink.tar.gz
+cd hashlink-$HASHLINK_VERSION
+#old # sed -i 's/LIBEXT = so/LIBEXT = a/' Makefile
+
+echo -e '\nlibhl_static: ${LIB}\n\tar rcs libhl.a ${LIB}' >> Makefile
+
+Add "#define char16_t uint16_t" to src/hl.h
+#old # sed -i 's/typedef char16_t uchar;/typedef wchar_t uchar;/' src/hl.h
+make
+
+cd ..
+sudo apt-get install -y gcc-arm-none-eabi gcc-multilib
+PLAYDATE_SDK_VERSION=2.6.2
+wget https://download-cdn.panic.com/playdate_sdk/Linux/PlaydateSDK-$PLAYDATE_SDK_VERSION.tar.gz
+tar -xvzf PlaydateSDK-$PLAYDATE_SDK_VERSION.tar.gz
+export PLAYDATE_SDK_PATH=$(pwd)/PlaydateSDK-$PLAYDATE_SDK_VERSION
+
+haxe --main Main2 -p src --hl out/main.c
+make simulator
+$PLAYDATE_SDK_PATH/bin/PlaydateSimulator HelloWorld.pdx
+```
+
 # Next steps
 
-- Run on git codespaces
-- Compile latest hashlisk
 - Compile hashlink for arm and put instructions here
 - Build for actual device
   This QEMU post could be interesting: https://devforum.play.date/t/how-to-emulate-playdate-arm-with-qemu/11538
