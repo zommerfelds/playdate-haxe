@@ -21,9 +21,9 @@ endif
 VPATH += src
 
 # List C source files here
-#SRC = src/main.c bin/libMain.a
-# TODO: compile hashlink for arm. libhl.a might not work
-SRC = out/main.c src/main_haxe.c hashlink-1.14/libhl.a
+# uncomment this one if compiling for the simulator
+#SRC = out/main.c src/main_haxe.c hashlink-1.14/libhl.a
+SRC = out/main.c src/main_haxe.c # hashlink-1.14/libhl.a
 
 # List all user directories here
 #UINCDIR = bin
@@ -47,7 +47,8 @@ ULIBDIR =
 #bin
 
 # List all user libraries here
-ULIBS = 
+# Remove this if compiling for simulator
+ULIBS = hashlink-1.14/libhl.a
 #libMain.a
 
 include $(SDK)/C_API/buildsupport/common.mk

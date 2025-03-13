@@ -69,6 +69,28 @@ make simulator
 $PLAYDATE_SDK_PATH/bin/PlaydateSimulator HelloWorld.pdx
 ```
 
+Building for the device
+
+tmp notes:
+```
+libhl_static_device: ${LIB}
+	arm-none-eabi-ar rcs libhl.a ${LIB}
+
+nope: # sudo apt-get install -y libc6-dev-armhf-cross
+
+CFLAGS += -fPIC -fno-omit-frame-pointer
+
+make CC=arm-none-eabi-gcc AR=arm-none-eabi-ar libhl_static
+
+#   24  (cd tmp; rm *; arm-none-eabi-ar -x ../libhl.a; file array.o)
+```
+
+```
+cd hashlink-$HASHLINK_VERSION
+make CC=arm-none-eabi-gcc AR=arm-none-eabi-ar libhl_static
+make device
+```
+
 # Next steps
 
 - Compile hashlink for arm and put instructions here
