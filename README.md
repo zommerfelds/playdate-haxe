@@ -46,21 +46,22 @@ haxelib install hashlink
 
 sudo apt-get install -y libpng-dev libturbojpeg-dev libvorbis-dev libopenal-dev libsdl2-dev libglu1-mesa-dev libmbedtls-dev libuv1-dev libsqlite3-dev
 HASHLINK_VERSION=1.14
-wget https://github.com/HaxeFoundation/hashlink/archive/refs/tags/$HASHLINK_VERSION.tar.gz -O hashlink.tar.gz
+mkdir /workspaces/build
+cd /workspaces/build
+wget https://github.com/HaxeFoundation/hashlink/archive/refs/tags/$HASHLINK_VERSION.tar.gz -O /tmp/hashlink.tar.gz
+tar -xvzf /tmp/hashlink.tar.gz
 cd hashlink-$HASHLINK_VERSION
-#old # sed -i 's/LIBEXT = so/LIBEXT = a/' Makefile
 
 echo -e '\nlibhl_static: ${LIB}\n\tar rcs libhl.a ${LIB}' >> Makefile
+sed -i '/#define HL_H/a #define char16_t uint16_t' src/hl.h
 
-Add "#define char16_t uint16_t" to src/hl.h
-#old # sed -i 's/typedef char16_t uchar;/typedef wchar_t uchar;/' src/hl.h
-make
+make libhl_static
 
 cd ..
 sudo apt-get install -y gcc-arm-none-eabi gcc-multilib
 PLAYDATE_SDK_VERSION=2.6.2
-wget https://download-cdn.panic.com/playdate_sdk/Linux/PlaydateSDK-$PLAYDATE_SDK_VERSION.tar.gz
-tar -xvzf PlaydateSDK-$PLAYDATE_SDK_VERSION.tar.gz
+wget https://download-cdn.panic.com/playdate_sdk/Linux/PlaydateSDK-$PLAYDATE_SDK_VERSION.tar.gz -O /tmp/playdate-sdk.tar.gz
+tar -xvzf /tmp/playdate-sdk.tar.gz
 export PLAYDATE_SDK_PATH=$(pwd)/PlaydateSDK-$PLAYDATE_SDK_VERSION
 
 haxe --main Main2 -p src --hl out/main.c

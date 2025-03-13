@@ -1,3 +1,7 @@
+# Consider including hashlink into the repo
+hashlink-*
+PlaydateSDK-*
+
 /build
 /out
 /HelloWorld.pdx
