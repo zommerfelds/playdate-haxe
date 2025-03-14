@@ -50,7 +50,7 @@ mkdir /workspaces/build
 cd /workspaces/build
 wget https://github.com/HaxeFoundation/hashlink/archive/refs/tags/$HASHLINK_VERSION.tar.gz -O /tmp/hashlink.tar.gz
 tar -xvzf /tmp/hashlink.tar.gz
-cd hashlink-$HASHLINK_VERSION
+cd hashlink-*
 
 echo -e '\nlibhl_static: ${LIB}\n\tar rcs libhl.a ${LIB}' >> Makefile
 sed -i '/#define HL_H/a #define char16_t uint16_t' src/hl.h
@@ -93,7 +93,7 @@ make device
 
 # Next steps
 
-- Compile hashlink for arm and put instructions here
+- Building Hashlink doesn't seem trivial. I'm getting missing things like _setjmp or sys_global_init. I believe these need to be set up. For example Hashlink needs to know how to call the Playdate malloc.
 - Build for actual device
   This QEMU post could be interesting: https://devforum.play.date/t/how-to-emulate-playdate-arm-with-qemu/11538
 - Make Haxe call PlayDate API:
